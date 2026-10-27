@@ -15,6 +15,6 @@ RUN apk add --no-cache \
 
 COPY run.sh monitor.py test_qpigs2.py test_setting_control.py /
 
-RUN chmod a+x /run.sh
+RUN chmod a+x /run.sh /monitor.py
 
 CMD ["/run.sh"]
