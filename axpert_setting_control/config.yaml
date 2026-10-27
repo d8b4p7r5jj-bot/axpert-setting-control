@@ -1,0 +1,41 @@
+name: Axpert Setting Control (Test)
+version: "0.1.18"
+slug: axpert_setting_control
+description: Read Axpert inverter telemetry and optionally control three allowlisted settings through MQTT
+arch:
+  - aarch64
+startup: application
+boot: manual
+init: false
+
+privileged:
+  - SYS_RAWIO
+
+devices:
+  - /dev/hidraw0
+
+options:
+  device: "/dev/hidraw0"
+  mqtt_server: "core-mosquitto"
+  mqtt_user: ""
+  mqtt_pass: ""
+  mqtt_client_id: "axpert_setting_control"
+  mqtt_topic_parallel: "power/axpert"
+  mqtt_topic_settings: "power/axpert_settings"
+  mqtt_topic: "power/axpert{sn}"
+  mqtt_topic_command: "power/axpert/set"
+  mqtt_topic_command_result: "power/axpert/command_result"
+  enable_setting_commands: false
+
+schema:
+  device: str
+  mqtt_server: str
+  mqtt_user: str
+  mqtt_pass: str
+  mqtt_client_id: str
+  mqtt_topic_parallel: str
+  mqtt_topic_settings: str
+  mqtt_topic: str
+  mqtt_topic_command: str
+  mqtt_topic_command_result: str
+  enable_setting_commands: bool
